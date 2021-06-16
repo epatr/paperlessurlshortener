@@ -9,24 +9,37 @@ using paperlessurlshortener.Models;
 
 namespace paperlessurlshortener.Controllers
 {
+    public class URLResponse
+    {
+        public string url { get; set; }
+        public string status { get; set; }
+        public string token { get; set; }
+    }
     public class HomeController : Controller
     {
-        public class URLResponse
+        [HttpGet, Route("/")]
+        public IActionResult Index()
         {
-            public string url { get; set; }
-            public string status { get; set; }
-            public string token { get; set; }
+            return View();
         }
+
+        [HttpPost, Route("/")]
+        public IActionResult PostURL([FromBody] string url)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet, Route("/{token}")]
+        public IActionResult NixRedirect([FromRoute] string token)
+        {
+            throw new NotImplementedException();
+        }
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult Privacy()
